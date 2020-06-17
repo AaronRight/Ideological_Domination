@@ -1,96 +1,168 @@
 <mat-tab-group>
     <mat-tab label="Идеи">
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>
-                    <mat-icon matTooltip="Не одобряю">thumb_down</mat-icon>
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <div class="example-container">
-                    <div cdkDropList #badIdeas="cdkDropList" [cdkDropListData]="bad_ideas"
-                        [cdkDropListConnectedTo]="[goodIdeas, uninterestingIdeas]" class="example-list"
-                        (cdkDropListDropped)="drop($event)">
-                        <div class="example-box" *ngFor="let item of bad_ideas" cdkDrag>
-                            {{ item }}
+        <div class="desktop_content">
+            <div class="example-card">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <mat-icon matTooltip="Не одобряю">thumb_down</mat-icon>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="example-container">
+                            <div cdkDropList #badIdeas="cdkDropList" [cdkDropListData]="bad_ideas"
+                                [cdkDropListConnectedTo]="[goodIdeas, uninterestingIdeas]" class="example-list"
+                                (cdkDropListDropped)="drop($event)">
+                                <div class="example-box" *ngFor="let item of bad_ideas" cdkDrag>
+                                    {{ item }}
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <mat-icon svgIcon="boring" matTooltip="Неинтересно"></mat-icon>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="example-container">
+                            <div cdkDropList #uninterestingIdeas="cdkDropList" [cdkDropListData]="uninteresting_ideas"
+                                [cdkDropListConnectedTo]="[badIdeas, goodIdeas]" class="example-list"
+                                (cdkDropListDropped)="drop($event)">
+                                <div class="example-box" *ngFor="let item of uninteresting_ideas" cdkDrag>
+                                    {{ item }}
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        <mat-icon matTooltip="Идеи к оценке">thumbs_up_down</mat-icon>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="example-container">
+                        <div cdkDropList #ideasForEstimation="cdkDropList" [cdkDropListData]="ideas_for_estimation"
+                            [cdkDropListConnectedTo]="[badIdeas, goodIdeas, uninterestingIdeas]" class="example-list"
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="example-box" *ngFor="let item of ideas_for_estimation" cdkDrag>
+                                {{ item }}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </mat-card-content>
-        </mat-card>
+                </mat-card-content>
+            </mat-card>
 
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>
-                    <mat-icon matTooltip="Идеи к оценке">thumbs_up_down</mat-icon>
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <div class="example-container">
-                    <div cdkDropList #ideasForEstimation="cdkDropList" [cdkDropListData]="ideas_for_estimation"
-                        [cdkDropListConnectedTo]="[badIdeas, goodIdeas, uninterestingIdeas]" class="example-list"
-                        (cdkDropListDropped)="drop($event)">
-                        <div class="example-box" *ngFor="let item of ideas_for_estimation" cdkDrag>
+            <div class="example-card">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <mat-icon matTooltip="Одобряю">thumb_up</mat-icon>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="example-container">
+                            <div cdkDropList #goodIdeas="cdkDropList" [cdkDropListData]="good_ideas"
+                                [cdkDropListConnectedTo]="[badIdeas, uninterestingIdeas]" class="example-list"
+                                (cdkDropListDropped)="drop($event)">
+                                <div class="example-box" *ngFor="let item of good_ideas" cdkDrag>
+                                    {{ item }}
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <mat-icon svgIcon="libra" matTooltip="Допуск" style="width: 48px; height: 48px;"></mat-icon>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div *ngFor="let item of ideas_for_judge">
                             {{ item }}
                         </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+        <div class="mobile_content">
+            <div class="example-container" id="bim">
+                <mat-icon matTooltip="Не одобряю">thumb_down</mat-icon>
+                <div cdkDropList #badIdeasMobile="cdkDropList" [cdkDropListData]="bad_ideas"
+                    [cdkDropListConnectedTo]="[goodIdeasMobile, uninterestingIdeasMobile]" class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of bad_ideas" cdkDrag>
+                        {{ item }}
                     </div>
                 </div>
-            </mat-card-content>
-        </mat-card>
-
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>
-                    <mat-icon matTooltip="Одобряю">thumb_up</mat-icon>
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <div class="example-container">
-                    <div cdkDropList #goodIdeas="cdkDropList" [cdkDropListData]="good_ideas"
-                        [cdkDropListConnectedTo]="[badIdeas, uninterestingIdeas]" class="example-list"
-                        (cdkDropListDropped)="drop($event)">
-                        <div class="example-box" *ngFor="let item of good_ideas" cdkDrag>
-                            {{ item }}
-                        </div>
+            </div>
+            <div class="example-container" id="uim">
+                <mat-icon svgIcon="boring" matTooltip="Неинтересно"></mat-icon>
+                <div cdkDropList #uninterestingIdeasMobile="cdkDropList" [cdkDropListData]="uninteresting_ideas"
+                    [cdkDropListConnectedTo]="[badIdeasMobile, goodIdeasMobile]" class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of uninteresting_ideas" cdkDrag>
+                        {{ item }}
                     </div>
                 </div>
-            </mat-card-content>
-        </mat-card>
-
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>
-                    <mat-icon svgIcon="boring" matTooltip="Неинтересно"></mat-icon>
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <div class="example-container">
-                    <div cdkDropList #uninterestingIdeas="cdkDropList" [cdkDropListData]="uninteresting_ideas"
-                        [cdkDropListConnectedTo]="[badIdeas, goodIdeas]" class="example-list"
-                        (cdkDropListDropped)="drop($event)">
-                        <div class="example-box" *ngFor="let item of uninteresting_ideas" cdkDrag>
-                            {{ item }}
-                        </div>
+            </div>
+            <div class="example-container" id="ifem">
+                <mat-icon matTooltip="Идеи к оценке">thumbs_up_down</mat-icon>
+                <div cdkDropList #ideasForEstimationMobile="cdkDropList" [cdkDropListData]="ideas_for_estimation"
+                    [cdkDropListConnectedTo]="[badIdeasMobile, goodIdeasMobile, uninterestingIdeasMobile]"
+                    class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of ideas_for_estimation" cdkDrag>
+                        {{ item }}
                     </div>
                 </div>
-            </mat-card-content>
-        </mat-card>
-
-
-
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>
-                    <mat-icon svgIcon="libra" matTooltip="Допуск" style="width: 48px; height: 48px;"></mat-icon>
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
+            </div>
+            <div class="example-container" id="gim">
+                <mat-icon matTooltip="Одобряю">thumb_up</mat-icon>
+                <div cdkDropList #goodIdeasMobile="cdkDropList" [cdkDropListData]="good_ideas"
+                    [cdkDropListConnectedTo]="[badIdeasMobile, uninterestingIdeasMobile]" class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let item of good_ideas" cdkDrag>
+                        {{ item }}
+                    </div>
+                </div>
+            </div>
+            <div id="ifjm">
+                <mat-icon svgIcon="libra" matTooltip="Допуск" style="width: 48px; height: 48px;"></mat-icon>
                 <div *ngFor="let item of ideas_for_judge">
                     {{ item }}
                 </div>
-            </mat-card-content>
-        </mat-card>
+            </div>
+        </div>
+        <mat-toolbar class="mobile_nav" color="primary">
+            <button mat-button style="flex: 1;" (click)="mobileNavToBadIdeas()">
+                <mat-icon>thumb_down</mat-icon>
+            </button>
+            <button mat-button style="flex: 1;" (click)="mobileNavToGoodIdeas()">
+                <mat-icon>thumb_up</mat-icon>
+            </button>
+            <button mat-button style="flex: 1;" (click)="mobileNavToIdeasForEstimation()">
+                <mat-icon>thumbs_up_down</mat-icon>
+            </button>
+            <button mat-button style="flex: 1;" (click)="mobileNavToUninteresingIdeas()">
+                <mat-icon svgIcon="boring" matTooltip="Неинтересно"></mat-icon>
+            </button>
+            <button mat-button style="flex: 1;" (click)="mobileNavToIdeasForJudge()">
+                <mat-icon svgIcon="libra" matTooltip="Допуск" style="width: 48px; height: 48px;"></mat-icon>
+            </button>
+        </mat-toolbar>
+
     </mat-tab>
+
     <mat-tab label="Партии"> Партии </mat-tab>
     <mat-tab label="Карта"> Карта </mat-tab>
     <mat-tab label="Мои идеи">

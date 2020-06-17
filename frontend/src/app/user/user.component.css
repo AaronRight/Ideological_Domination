@@ -46,8 +46,7 @@
 }
 
 .example-card {
-  width: 30%;
-  height: 45%;
+  flex: 1;
   margin: 5px;
   display: flex;
   flex-direction: column;
@@ -64,4 +63,42 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+}
+
+.mobile_nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex: 0;
+}
+
+.desktop_content,
+.mobile_content {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.mat-tab.body {
+  display: flex !important;
+}
+
+.mobile_nav,
+.mobile_content {
+  display: flex;
+}
+
+.desktop_content {
+  display: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .mobile_nav,
+  .mobile_content {
+    display: none;
+  }
+
+  .desktop_content {
+    display: flex;
+  }
 }

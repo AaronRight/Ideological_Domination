@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -13,7 +15,11 @@ import { MatIconRegistry } from "@angular/material/icon";
   styleUrls: ["user.component.css"],
 })
 export class UserComponent implements OnInit {
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+    @Inject(DOCUMENT) document
+  ) {
     iconRegistry.addSvgIcon(
       "boring",
       sanitizer.bypassSecurityTrustResourceUrl("assets/boring.svg")
@@ -57,5 +63,45 @@ export class UserComponent implements OnInit {
         event.currentIndex
       );
     }
+  }
+
+  mobileNavToBadIdeas() {
+    document.getElementById("ifem").style.setProperty("display", "none");
+    document.getElementById("bim").style.setProperty("display", "flex");
+    document.getElementById("gim").style.setProperty("display", "flex");
+    document.getElementById("ifjm").style.setProperty("display", "none");
+    document.getElementById("uim").style.setProperty("display", "flex");
+  }
+
+  mobileNavToIdeasForJudge() {
+    document.getElementById("ifem").style.setProperty("display", "none");
+    document.getElementById("bim").style.setProperty("display", "none");
+    document.getElementById("gim").style.setProperty("display", "none");
+    document.getElementById("ifjm").style.setProperty("display", "flex");
+    document.getElementById("uim").style.setProperty("display", "none");
+  }
+
+  mobileNavToGoodIdeas() {
+    document.getElementById("ifem").style.setProperty("display", "none");
+    document.getElementById("bim").style.setProperty("display", "flex");
+    document.getElementById("gim").style.setProperty("display", "flex");
+    document.getElementById("ifjm").style.setProperty("display", "none");
+    document.getElementById("uim").style.setProperty("display", "flex");
+  }
+
+  mobileNavToUninteresingIdeas() {
+    document.getElementById("ifem").style.setProperty("display", "none");
+    document.getElementById("bim").style.setProperty("display", "flex");
+    document.getElementById("gim").style.setProperty("display", "flex");
+    document.getElementById("ifjm").style.setProperty("display", "none");
+    document.getElementById("uim").style.setProperty("display", "flex");
+  }
+
+  mobileNavToIdeasForEstimation() {
+    document.getElementById("ifem").style.setProperty("display", "flex");
+    document.getElementById("bim").style.setProperty("display", "flex");
+    document.getElementById("gim").style.setProperty("display", "flex");
+    document.getElementById("ifjm").style.setProperty("display", "none");
+    document.getElementById("uim").style.setProperty("display", "none");
   }
 }

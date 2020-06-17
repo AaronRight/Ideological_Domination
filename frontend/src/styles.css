@@ -18,6 +18,8 @@ body {
   flex-wrap: wrap;
   overflow: hidden !important;
   justify-content: center;
+  align-items: stretch;
+  flex-direction: column;
 }
 
 .mat-tab-body-wrapper {
