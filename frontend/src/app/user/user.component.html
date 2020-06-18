@@ -1,5 +1,5 @@
 <mat-tab-group>
-    <mat-tab label="Идеи">
+    <mat-tab label="Идеи" id="ideas_tab">
         <div class="desktop_content">
             <div class="example-card">
                 <mat-card class="example-card">
@@ -96,7 +96,7 @@
         </div>
 
         <div class="mobile_content">
-            <div class="example-container" id="bim">
+            <div class="example-container" id="bim" style="display: none;">
                 <mat-icon matTooltip="Не одобряю">thumb_down</mat-icon>
                 <div cdkDropList #badIdeasMobile="cdkDropList" [cdkDropListData]="bad_ideas"
                     [cdkDropListConnectedTo]="[goodIdeasMobile, uninterestingIdeasMobile]" class="example-list"
@@ -106,7 +106,7 @@
                     </div>
                 </div>
             </div>
-            <div class="example-container" id="uim">
+            <div class="example-container" id="uim" style="display: none;">
                 <mat-icon svgIcon="boring" matTooltip="Неинтересно"></mat-icon>
                 <div cdkDropList #uninterestingIdeasMobile="cdkDropList" [cdkDropListData]="uninteresting_ideas"
                     [cdkDropListConnectedTo]="[badIdeasMobile, goodIdeasMobile]" class="example-list"
@@ -116,7 +116,7 @@
                     </div>
                 </div>
             </div>
-            <div class="example-container" id="ifem">
+            <div class="example-container" id="ifem" style="display: none;">
                 <mat-icon matTooltip="Идеи к оценке">thumbs_up_down</mat-icon>
                 <div cdkDropList #ideasForEstimationMobile="cdkDropList" [cdkDropListData]="ideas_for_estimation"
                     [cdkDropListConnectedTo]="[badIdeasMobile, goodIdeasMobile, uninterestingIdeasMobile]"
@@ -126,7 +126,7 @@
                     </div>
                 </div>
             </div>
-            <div class="example-container" id="gim">
+            <div class="example-container" id="gim" style="display: none;">
                 <mat-icon matTooltip="Одобряю">thumb_up</mat-icon>
                 <div cdkDropList #goodIdeasMobile="cdkDropList" [cdkDropListData]="good_ideas"
                     [cdkDropListConnectedTo]="[badIdeasMobile, uninterestingIdeasMobile]" class="example-list"
@@ -136,7 +136,7 @@
                     </div>
                 </div>
             </div>
-            <div id="ifjm">
+            <div class="example-container" id="ifjm">
                 <mat-icon svgIcon="libra" matTooltip="Допуск" style="width: 48px; height: 48px;"></mat-icon>
                 <div *ngFor="let item of ideas_for_judge">
                     {{ item }}

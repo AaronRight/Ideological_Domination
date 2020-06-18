@@ -66,42 +66,121 @@ export class UserComponent implements OnInit {
   }
 
   mobileNavToBadIdeas() {
-    document.getElementById("ifem").style.setProperty("display", "none");
-    document.getElementById("bim").style.setProperty("display", "flex");
-    document.getElementById("gim").style.setProperty("display", "flex");
-    document.getElementById("ifjm").style.setProperty("display", "none");
-    document.getElementById("uim").style.setProperty("display", "flex");
+    document.getElementsByClassName("mat-tab-body-content")[0].scrollLeft =
+      document.getElementsByClassName("mat-tab-body-content")[0].scrollWidth /
+      3.325;
+
+    this.updateVisibilityAndOrder({
+      ifem: { display: false },
+      bim: { display: true, order: 2 },
+      gim: { display: true, order: 1 },
+      ifjm: { display: false },
+      uim: { display: true, order: 3 },
+    });
   }
 
   mobileNavToIdeasForJudge() {
-    document.getElementById("ifem").style.setProperty("display", "none");
-    document.getElementById("bim").style.setProperty("display", "none");
-    document.getElementById("gim").style.setProperty("display", "none");
-    document.getElementById("ifjm").style.setProperty("display", "flex");
-    document.getElementById("uim").style.setProperty("display", "none");
+    document.getElementsByClassName("mat-tab-body-content")[0].scrollLeft = 0;
+    this.updateVisibilityAndOrder({
+      ifem: { display: false },
+      bim: { display: false },
+      gim: { display: false },
+      ifjm: { display: true },
+      uim: { display: false },
+    });
   }
 
   mobileNavToGoodIdeas() {
-    document.getElementById("ifem").style.setProperty("display", "none");
-    document.getElementById("bim").style.setProperty("display", "flex");
-    document.getElementById("gim").style.setProperty("display", "flex");
-    document.getElementById("ifjm").style.setProperty("display", "none");
-    document.getElementById("uim").style.setProperty("display", "flex");
+    document.getElementsByClassName("mat-tab-body-content")[0].scrollLeft =
+      document.getElementsByClassName("mat-tab-body-content")[0].scrollWidth /
+      3.325;
+    this.updateVisibilityAndOrder({
+      ifem: { display: false },
+      bim: { display: true, order: 1 },
+      gim: { display: true, order: 2 },
+      ifjm: { display: false },
+      uim: { display: true, order: 3 },
+    });
   }
 
   mobileNavToUninteresingIdeas() {
-    document.getElementById("ifem").style.setProperty("display", "none");
-    document.getElementById("bim").style.setProperty("display", "flex");
-    document.getElementById("gim").style.setProperty("display", "flex");
-    document.getElementById("ifjm").style.setProperty("display", "none");
-    document.getElementById("uim").style.setProperty("display", "flex");
+    document.getElementsByClassName("mat-tab-body-content")[0].scrollLeft =
+      document.getElementsByClassName("mat-tab-body-content")[0].scrollWidth /
+      3.325;
+    this.updateVisibilityAndOrder({
+      ifem: { display: false },
+      bim: { display: true, order: 1 },
+      gim: { display: true, order: 3 },
+      ifjm: { display: false },
+      uim: { display: true, order: 2 },
+    });
   }
 
   mobileNavToIdeasForEstimation() {
-    document.getElementById("ifem").style.setProperty("display", "flex");
-    document.getElementById("bim").style.setProperty("display", "flex");
-    document.getElementById("gim").style.setProperty("display", "flex");
-    document.getElementById("ifjm").style.setProperty("display", "none");
-    document.getElementById("uim").style.setProperty("display", "none");
+    document.getElementsByClassName("mat-tab-body-content")[0].scrollLeft =
+      document.getElementsByClassName("mat-tab-body-content")[0].scrollWidth /
+      3.325;
+    this.updateVisibilityAndOrder({
+      ifem: { display: true, order: 2 },
+      bim: { display: true, order: 1 },
+      gim: { display: true, order: 3 },
+      ifjm: { display: false },
+      uim: { display: false },
+    });
+  }
+
+  updateVisibilityAndOrder(config) {
+    let ifem = document.getElementById("ifem");
+    ifem.style.setProperty("display", config.ifem.display ? "flex" : "none");
+    config.ifem.order && ifem.style.setProperty("order", config.ifem.order);
+    (<HTMLElement>ifem.getElementsByClassName("mat-icon")[0]).style.setProperty(
+      "align-self",
+      this.alignByOrder(config.ifem.order)
+    );
+
+    let bim = document.getElementById("bim");
+    bim.style.setProperty("display", config.bim.display ? "flex" : "none");
+    config.bim.order && bim.style.setProperty("order", config.bim.order);
+    (<HTMLElement>bim.getElementsByClassName("mat-icon")[0]).style.setProperty(
+      "align-self",
+      this.alignByOrder(config.bim.order)
+    );
+
+    let gim = document.getElementById("gim");
+    gim.style.setProperty("display", config.gim.display ? "flex" : "none");
+    config.gim.order && gim.style.setProperty("order", config.gim.order);
+    (<HTMLElement>gim.getElementsByClassName("mat-icon")[0]).style.setProperty(
+      "align-self",
+      this.alignByOrder(config.gim.order)
+    );
+
+    let ifjm = document.getElementById("ifjm");
+    ifjm.style.setProperty("display", config.ifjm.display ? "flex" : "none");
+    config.ifjm.order && ifjm.style.setProperty("order", config.ifjm.order);
+    (<HTMLElement>ifjm.getElementsByClassName("mat-icon")[0]).style.setProperty(
+      "align-self",
+      this.alignByOrder(config.ifjm.order)
+    );
+
+    let uim = document.getElementById("uim");
+    uim.style.setProperty("display", config.uim.display ? "flex" : "none");
+    config.uim.order && uim.style.setProperty("order", config.uim.order);
+    (<HTMLElement>uim.getElementsByClassName("mat-icon")[0]).style.setProperty(
+      "align-self",
+      this.alignByOrder(config.uim.order)
+    );
+  }
+
+  alignByOrder(order) {
+    switch (order) {
+      case 1:
+        return "flex-end";
+      case 2:
+        return "center";
+      case 3:
+        return "flex-start";
+      default:
+        return "auto";
+    }
   }
 }

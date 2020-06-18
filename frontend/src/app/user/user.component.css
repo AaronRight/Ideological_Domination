@@ -70,6 +70,8 @@
   flex-direction: row;
   justify-content: space-around;
   flex: 0;
+  position: absolute;
+  bottom: 0;
 }
 
 .desktop_content,
@@ -88,6 +90,16 @@
   display: flex;
 }
 
+.mobile_content {
+  width: 250%;
+}
+
+.inner_mobile_content {
+  overflow-x: scroll;
+  flex: 1;
+  display: flex;
+}
+
 .desktop_content {
   display: none;
 }
@@ -101,4 +113,8 @@
   .desktop_content {
     display: flex;
   }
+}
+
+.mat-tab.body {
+  overflow: auto !important;
 }
