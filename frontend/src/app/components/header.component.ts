@@ -13,18 +13,17 @@ import { Component, OnInit } from "@angular/core";
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <!-- give local reference and tell this is manu by assigning 'matMenu' -->
         <button mat-menu-item>
-          <mat-icon>dialpad</mat-icon>
-          <span>Redial</span>
+          <mat-icon>admin_panel_settings</mat-icon>
+          <span>Admin</span>
         </button>
         <button mat-menu-item disabled>
-          <mat-icon>voicemail</mat-icon>
-          <span>Check voicemail</span>
+          <mat-icon>assignment_ind</mat-icon>
+          <span>My profile</span>
         </button>
         <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>Disable alerts</span>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
         </button>
       </mat-menu>
       <span>{{ header_title }}</span>

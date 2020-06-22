@@ -1,0 +1,10 @@
+.user-form {
+  position: relative;
+}
+
+.submit-button {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  z-index: 25;
+}

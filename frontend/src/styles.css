@@ -11,6 +11,7 @@ body {
   display: flex;
   flex: 1;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .mat-tab-body-content {
@@ -30,4 +31,30 @@ body {
   display: flex !important;
   flex-direction: column;
   flex: 1;
+}
+
+/*.zone-inputs,*/
+.ngx-mat-color-collection {
+  display: none !important;
+}
+
+.mobile_nav,
+.mobile_content {
+  display: flex !important;
+}
+
+.desktop_nav,
+.desktop_content {
+  display: none !important;
+}
+
+@media only screen and (min-width: 600px) {
+  .mobile_nav,
+  .mobile_content {
+    display: none !important;
+  }
+  .desktop_nav,
+  .desktop_content {
+    display: flex !important;
+  }
 }

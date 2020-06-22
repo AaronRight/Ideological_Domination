@@ -1,60 +1,43 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-
+import { AppMaterialModule } from "./app-material.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { UserComponent } from "./user/user.component";
-import { PartyComponent } from "./party/party.component";
-import { IdeaComponent } from "./idea/idea.component";
-import { IdeaListComponent } from "./idea/idea-list.component";
-import { InitiativeComponent } from "./initiative/initiative.component";
-import { InitiativeListComponent } from "./initiative/initiative-list.component";
-import { HeaderComponent } from "./header/header.component";
-
 import {
-  MatAutocompleteModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatChipsModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatDividerModule,
-  MatExpansionModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
-  MatRippleModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSliderModule,
-  MatSlideToggleModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatStepperModule,
-  MatTableModule,
-  MatTabsModule,
-  MatToolbarModule,
-  MatTooltipModule,
-} from "@angular/material";
+  PartyComponent,
+  PartyListComponent,
+  PartyEditComponent,
+  HeaderComponent,
+  MainComponent,
+  ResetPasswordComponent,
+  SignInComponent,
+  SignUpComponent,
+} from "./components";
+import { IdeaComponent, IdeaListComponent } from "./components";
+import { InitiativeComponent } from "./components/initiative/initiative.component";
+import { InitiativeListComponent } from "./components/initiative/initiative-list.component";
+
 //import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { HttpClientModule } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {
+  MAT_COLOR_FORMATS,
+  NgxMatColorPickerModule,
+  NGX_MAT_COLOR_FORMATS,
+} from "@angular-material-components/color-picker";
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
+    ResetPasswordComponent,
+    SignInComponent,
+    SignUpComponent,
+    MainComponent,
     PartyComponent,
+    PartyListComponent,
+    PartyEditComponent,
     IdeaComponent,
     IdeaListComponent,
     InitiativeComponent,
@@ -63,44 +46,18 @@ import { HttpClientModule } from "@angular/common/http";
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
+    AppMaterialModule,
     DragDropModule,
     HttpClientModule,
+    NgxMatColorPickerModule,
   ],
-  providers: [],
+  providers: [{ provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }],
   bootstrap: [AppComponent],
+
+  entryComponents: [PartyEditComponent],
 })
 export class AppModule {}

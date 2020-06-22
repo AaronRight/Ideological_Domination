@@ -1,0 +1,44 @@
+<div class="form">
+  <mat-form-field floatPlaceholder="never" color="accent">
+    <input matInput #filter placeholder="Filter...">
+  </mat-form-field>
+</div>
+
+<mat-table *ngIf="dataSource" #table [dataSource]="dataSource" matSort class="mat-cell">
+
+  <template *ngFor="let column of displayedColumns">
+    <ng-container *ngIf="column!='actions'" matColumnDef="{{column}}">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>{{column}}</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row[column]}}</mat-cell>
+    </ng-container>
+  </template>
+
+  <!-- actions -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>
+      <button mat-raised-button class="mat-primary" (click)="addDialog()">+</button>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let row; let i=index;">
+      <button mat-icon-button class="mat-primary" (click)="editDialog(row)">
+        <mat-icon aria-label="Edit">edit</mat-icon>
+      </button>
+
+      <button mat-icon-button class="mat-primary" (click)="deleteDialog(row)">
+        <mat-icon aria-label="Delete">delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+
+<div *ngIf="dataSource" class="no-results" [style.display]="dataSource.data.length == 0 ? '' : 'none'">
+  No results
+</div>
+
+<mat-paginator *ngIf="dataSource" #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>

@@ -1,0 +1,13 @@
+<h2 style="margin-bottom: 0">{{userService.currentUser.nickName}}</h2>
+<hr style="width: 100%;" />
+<p>{{userService.currentUser.email}}</p>
+<div class="row">
+    <span>{{userService.currentUser.role}}</span>
+    <mat-chip-list>
+        <mat-chip color="primary">{{userService.currentUser.points}}</mat-chip>
+    </mat-chip-list>
+</div>
+<div class="row">
+    <span>{{userService.currentUser.registrationDate}}</span>
+    <span>{{userService.currentUser.lastLoginDate}}</span>
+</div>

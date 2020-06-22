@@ -10,11 +10,11 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { MatIconRegistry } from "@angular/material/icon";
 
 @Component({
-  selector: "app-user",
-  templateUrl: `user.component.html`,
-  styleUrls: ["user.component.css"],
+  selector: "app-main",
+  templateUrl: `main.component.html`,
+  styleUrls: ["main.component.css"],
 })
-export class UserComponent implements OnInit {
+export class MainComponent implements OnInit {
   constructor(
     iconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
