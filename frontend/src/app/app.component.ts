@@ -6,18 +6,19 @@ import { MessageService } from "./services/message.service";
     <app-header></app-header>
     <router-outlet></router-outlet>
 
-    <!--input
+    <input
       class="form-control"
       type="text"
       placeholder="message"
       [(ngModel)]="input"
     />
     <button class="btn btn-success" (click)="sendMessage()">Send</button>
-    <div-- class="content">
+    <button class="btn btn-success" (click)="sendAnswer()">Answer</button>
+    <div class="content">
       <div *ngFor="let msg of messageService.msg">
         {{ msg }}
       </div>
-    </div-->
+    </div>
   `,
   styles: [":host{ display: flex; flex: 1; flex-direction: column}"],
 })
@@ -28,6 +29,12 @@ export class AppComponent {
   sendMessage() {
     if (this.input) {
       this.messageService.sendMessage(this.input);
+      this.input = "";
+    }
+  }
+  sendAnswer() {
+    if (this.input) {
+      this.messageService.sendAnswer(this.input);
       this.input = "";
     }
   }

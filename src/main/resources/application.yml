@@ -13,6 +13,41 @@ spring:
           connectiontimeout: 5000
           timeout: 3000
           writetimeout: 5000
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tengu_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    testAvailable: true
+    validatingQueue: SELECT 1
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
 
 server:
   port: 8081
+
+app:
+  jwtSecret: jwtSecretKey
+  jwtExpiration: 86400
+
+security:
+  ignored: /**
+  basic:
+    enable: false
+management:
+  security:
+    enabled: false

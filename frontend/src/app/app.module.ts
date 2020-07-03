@@ -12,10 +12,19 @@ import {
   ResetPasswordComponent,
   SignInComponent,
   SignUpComponent,
+  AdminComponent,
+  CrudTableComponent,
+  IdeaComponent,
+  IdeaListComponent,
+  InitiativeComponent,
+  InitiativeListComponent,
+  InitiativeEditComponent,
+  IdeaEditComponent,
+  UserEditComponent,
 } from "./components";
-import { IdeaComponent, IdeaListComponent } from "./components";
-import { InitiativeComponent } from "./components/initiative/initiative.component";
-import { InitiativeListComponent } from "./components/initiative/initiative-list.component";
+
+import { httpInterceptorProviders } from "./security/auth-interceptor";
+import { AuthGuardService } from "./security/auth-guard.service";
 
 //import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -43,6 +52,11 @@ import {
     InitiativeComponent,
     InitiativeListComponent,
     HeaderComponent,
+    AdminComponent,
+    CrudTableComponent,
+    InitiativeEditComponent,
+    IdeaEditComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,9 +69,17 @@ import {
     HttpClientModule,
     NgxMatColorPickerModule,
   ],
-  providers: [{ provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }],
+  providers: [
+    httpInterceptorProviders,
+    AuthGuardService,
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
+  ],
   bootstrap: [AppComponent],
-
-  entryComponents: [PartyEditComponent],
+  entryComponents: [
+    PartyEditComponent,
+    InitiativeEditComponent,
+    IdeaEditComponent,
+    UserEditComponent,
+  ],
 })
 export class AppModule {}

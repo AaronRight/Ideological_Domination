@@ -1,4 +1,4 @@
-import { Component, Input, Inject } from "@angular/core";
+import { Component, Input, Inject, AfterViewInit } from "@angular/core";
 import { Party } from "../models";
 import { PartyService } from "../services";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
@@ -36,10 +36,7 @@ export class PartyComponent {
       <div
         style="flex:1; overflow-y: overlay; display: flex; flex-direction: column; "
       >
-        <app-party
-          *ngFor="let p of partyService.getAll()"
-          [party]="p"
-        ></app-party>
+        <app-party *ngFor="let p of parties" [party]="p"></app-party>
       </div>
     </div>
     <button
@@ -65,8 +62,14 @@ export class PartyComponent {
     ":host{height: 75vh; flex:1; display: flex; flex-direction: column; }",
   ],
 })
-export class PartyListComponent {
+export class PartyListComponent implements AfterViewInit {
+  parties: Party[];
   constructor(private partyService: PartyService) {}
+  ngAfterViewInit() {
+    this.partyService.getAll().subscribe((value: Party[]) => {
+      this.parties = value;
+    });
+  }
 }
 
 @Component({
@@ -117,6 +120,7 @@ export class PartyEditComponent {
       color: [""],
     });
   }
+
   onSubmit() {
     if (this.partyForm.valid) {
       let cur = new Party();

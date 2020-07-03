@@ -2,55 +2,25 @@ import { Injectable } from "@angular/core";
 import { Party } from "../models";
 import { PartyEditComponent } from "../components";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-
-function mocParty(id, color, name) {
-  let def = new Party();
-  def.color = color;
-  def.id = id;
-  def.name = name;
-  return def;
-}
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class PartyService {
-  parties: Party[] = [];
+  constructor(private http: HttpClient, public dialog: MatDialog) {}
 
-  constructor(public dialog: MatDialog) {
-    this.parties = [
-      mocParty(1, "#FF0000", "Griffindor"),
-      mocParty(2, "#00FF00", "Ravenclaw"),
-      mocParty(3, "#0000FF", "Hafflepuff"),
-      mocParty(4, "#FF00FF", "Slitherine"),
-      mocParty(1, "#FF0000", "Griffindor"),
-      mocParty(2, "#00FF00", "Ravenclaw"),
-      mocParty(3, "#0000FF", "Hafflepuff"),
-      mocParty(4, "#FF00FF", "Slitherine"),
-      mocParty(1, "#FF0000", "Griffindor"),
-      mocParty(2, "#00FF00", "Ravenclaw"),
-      mocParty(3, "#0000FF", "Hafflepuff"),
-      mocParty(4, "#FF00FF", "Slitherine"),
-    ];
+  getAll(): Observable<Party[]> {
+    return this.http.get<Party[]>(`/api/parties/`);
   }
 
-  getAll() {
-    return this.parties;
-  }
-
-  get(id) {
-    for (let p of this.parties) if (p.id == id) return p;
-    return undefined;
+  get(id): Observable<Party> {
+    return this.http.get<Party>(`/api/parties/${id}`);
   }
 
   save(party: Party) {
-    let newInst = true;
-    for (let p of this.parties)
-      if (p.id == party.id) {
-        newInst = false;
-        p = party;
-      }
-    if (newInst) this.parties.push(party);
+    this.http.post(`/api/parties/save`, party);
   }
 
   join() {}

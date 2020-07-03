@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-//import { UserService } from "../user.service";
+import { UserService } from "../../services/user.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { TokenStorageService } from "../../security/token-storage.service";
+import { AuthLoginInfo } from "../../security/login-info";
+import { MessageService } from "../../services/message.service";
 
 @Component({
   selector: "app-log-in",
@@ -17,12 +20,15 @@ export class SignInComponent implements OnInit {
 
   hide: false;
   signInForm: FormGroup;
+  private loginInfo: AuthLoginInfo;
 
   constructor(
     public fb: FormBuilder,
-    //private userService: UserService,
+    private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private tokenStorage: TokenStorageService,
+    private messageService: MessageService
   ) {
     this.signInForm = this.fb.group({
       email: ["", [Validators.email, Validators.required]],
@@ -52,14 +58,15 @@ export class SignInComponent implements OnInit {
   }
 
   onSuccess() {
-    //this.userService.loadCurrentUserData(this.email.value, () =>
-    //  this.router.navigateByUrl(this.return)
-    //);
+    this.messageService.initializeWebSocketConnection();
+    this.userService.loadCurrentUserData(this.email.value, () =>
+      this.router.navigateByUrl(this.return)
+    );
   }
 
   onSubmit() {
-    //    this.loginInfo = new AuthLoginInfo(this.email.value, this.password.value);
-    /*
+    this.loginInfo = new AuthLoginInfo(this.email.value, this.password.value);
+
     this.userService.attemptAuth(this.loginInfo).subscribe(
       (data) => {
         this.tokenStorage.saveToken(data.accessToken);
@@ -76,6 +83,6 @@ export class SignInComponent implements OnInit {
         this.errorMessage = error.error.message;
         this.isLoginFailed = true;
       }
-    );*/
+    );
   }
 }

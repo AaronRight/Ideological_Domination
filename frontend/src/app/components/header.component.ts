@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { TokenStorageService } from "../security/token-storage.service";
 
 @Component({
   selector: "app-header",
@@ -13,15 +15,15 @@ import { Component, OnInit } from "@angular/core";
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="admin()">
           <mat-icon>admin_panel_settings</mat-icon>
           <span>Admin</span>
         </button>
-        <button mat-menu-item disabled>
+        <button mat-menu-item (click)="myProfile()">
           <mat-icon>assignment_ind</mat-icon>
-          <span>My profile</span>
+          <span>My Profile</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="logout()">
           <mat-icon>exit_to_app</mat-icon>
           <span>Logout</span>
         </button>
@@ -39,7 +41,18 @@ import { Component, OnInit } from "@angular/core";
 export class HeaderComponent implements OnInit {
   header_title = "Title";
 
-  constructor() {}
+  constructor(private router: Router, private token: TokenStorageService) {}
 
   ngOnInit() {}
+
+  admin() {
+    this.router.navigate(["/admin"]);
+  }
+  myProfile() {
+    this.router.navigate(["/my-profile"]);
+  }
+  logout() {
+    this.token.signOut();
+    window.location.reload();
+  }
 }

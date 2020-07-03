@@ -29,3 +29,18 @@ export class IdeaListComponent implements OnInit {
 
   ngOnInit() {}
 }
+
+@Component({
+  selector: "app-idea-edit",
+  template: `
+    <p>
+      idea works!
+    </p>
+  `,
+  styles: [],
+})
+export class IdeaEditComponent implements OnInit {
+  constructor() {}
+
+  ngOnInit() {}
+}

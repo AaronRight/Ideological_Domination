@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-//import { UserService } from "../../user/user.service";
+import { UserService } from "../../services/user.service";
 import { Role } from "../../models";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { SignUpInfo } from "../../security/signup-info";
 import { Observable } from "rxjs";
 
 @Component({
@@ -15,13 +16,14 @@ export class SignUpComponent {
   hide: false;
   signUpForm: FormGroup;
 
+  signupInfo: SignUpInfo;
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = "";
 
   constructor(
     public fb: FormBuilder,
-    //private userService: UserService,
+    private userService: UserService,
     private router: Router
   ) {
     this.signUpForm = this.fb.group({
@@ -58,7 +60,13 @@ export class SignUpComponent {
   onSubmit() {
     console.log(this.signUpForm);
 
-    /*
+    this.signupInfo = new SignUpInfo(
+      this.nickName.value,
+      this.email.value,
+      this.password.value,
+      this.role.value
+    );
+
     this.userService.signUp(this.signupInfo).subscribe(
       (data) => {
         console.log(data);
@@ -71,6 +79,6 @@ export class SignUpComponent {
         this.errorMessage = error.error.message;
         this.isSignUpFailed = true;
       }
-    );*/
+    );
   }
 }

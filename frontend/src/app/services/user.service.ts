@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
-/*
-import { JwtResponse } from "./auth/jwt-response";
-import { AuthLoginInfo } from "./auth/login-info";
-import { SignUpInfo } from "./auth/signup-info";*/
+
+import { JwtResponse } from "../security/jwt-response";
+import { AuthLoginInfo } from "../security/login-info";
+import { SignUpInfo } from "../security/signup-info";
 import { Router } from "@angular/router";
 import { User } from "../models";
 
@@ -22,7 +22,7 @@ export class UserService {
   private signupUrl = "/api/users/auth/signup";
 
   constructor(private http: HttpClient, private router: Router) {}
-  /*
+
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
   }
@@ -38,19 +38,6 @@ export class UserService {
     });
   }
 
-  buy(storyId) {
-    return this.http.get(
-      `/api/operations/buy/${this.currentUser.id}/${storyId}`
-    );
-  }
-
-  rate(storyId, value) {
-    console.log(storyId, value);
-    return this.http.get(
-      `/api/operations/rate/${this.currentUser.id}/${storyId}/${value}`
-    );
-  }
-*/
   loadUsers() {
     return this.http.get("/api/users/");
   }

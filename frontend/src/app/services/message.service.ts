@@ -5,9 +5,7 @@ declare var Stomp;
   providedIn: "root",
 })
 export class MessageService {
-  constructor() {
-    this.initializeWebSocketConnection();
-  }
+  constructor() {}
   public stompClient;
   public msg = [];
   initializeWebSocketConnection() {
@@ -22,10 +20,19 @@ export class MessageService {
           that.msg.push(message.body);
         }
       });
+      that.stompClient.subscribe("/user/message", (message) => {
+        if (message.body) {
+          that.msg.push(message.body);
+        }
+      });
     });
   }
 
   sendMessage(message) {
     this.stompClient.send("/app/send/message", {}, message);
+  }
+
+  sendAnswer(message) {
+    this.stompClient.send("/app/send/answer", {}, message);
   }
 }

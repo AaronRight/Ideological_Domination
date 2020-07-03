@@ -5,8 +5,13 @@ import { User } from "../models";
 import { UserService } from "../services/user.service";
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { DeleteDialogComponent } from "./shared/delete/delete.dialog.component";
-import { UserEditComponent } from "./user/user-edit/user-edit.component";
+import {
+  UserEditComponent,
+  DeleteDialogComponent,
+  InitiativeEditComponent,
+  IdeaEditComponent,
+  PartyEditComponent,
+} from "../components";
 
 @Component({
   selector: "admin",
@@ -20,7 +25,7 @@ import { UserEditComponent } from "./user/user-edit/user-edit.component";
         [editDialog]="createEditUserDialog"
       ></crud-table>
     </mat-tab>
-    <mat-tab label="Stories">
+    <mat-tab label="Parties">
       <crud-table
         [loadData]="loadStoryData"
         [model]="storyDataModel"
@@ -29,11 +34,23 @@ import { UserEditComponent } from "./user/user-edit/user-edit.component";
         [editDialog]="createEditStoryDialog"
       ></crud-table>
     </mat-tab>
-    <mat-tab label="Purchases">
-      //TODO
+    <mat-tab label="Ideas">
+      <crud-table
+        [loadData]="loadStoryData"
+        [model]="storyDataModel"
+        [deleteDialog]="deleteDialog"
+        [addDialog]="createEditStoryDialog"
+        [editDialog]="createEditStoryDialog"
+      ></crud-table>
     </mat-tab>
-    <mat-tab label="Ratings">
-      //TODO
+    <mat-tab label="Initiatives">
+      <crud-table
+        [loadData]="loadStoryData"
+        [model]="storyDataModel"
+        [deleteDialog]="deleteDialog"
+        [addDialog]="createEditStoryDialog"
+        [editDialog]="createEditStoryDialog"
+      ></crud-table>
     </mat-tab>
   </mat-tab-group>`,
   styles: [":host { flex: 1; }"],
@@ -45,24 +62,41 @@ export class AdminComponent implements OnInit {
   constructor(public dialog: MatDialog, public userService: UserService) {}
 
   deleteDialog(): void {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: {},
-    });
+    const dialogRef = this.dialog.open(DeleteDialogComponent, { data: {} });
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
-      //this.router.navigate(["."], { relativeTo: this.route });
     });
   }
 
   createEditUserDialog(row): void {
     let data = row ? { id: row.id } : {};
-
-    const dialogRef = this.dialog.open(UserEditComponent, {
-      data,
-    });
+    const dialogRef = this.dialog.open(UserEditComponent, { data });
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
-      //this.router.navigate(["."], { relativeTo: this.route });
+    });
+  }
+
+  createEditInitiativeDialog(row): void {
+    let data = row ? { id: row.id } : {};
+    const dialogRef = this.dialog.open(InitiativeEditComponent, { data });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log("The dialog was closed");
+    });
+  }
+
+  createEditIdeaDialog(row): void {
+    let data = row ? { id: row.id } : {};
+    const dialogRef = this.dialog.open(IdeaEditComponent, { data });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log("The dialog was closed");
+    });
+  }
+
+  createEditPartyDialog(row): void {
+    let data = row ? { id: row.id } : {};
+    const dialogRef = this.dialog.open(PartyEditComponent, { data });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log("The dialog was closed");
     });
   }
 
