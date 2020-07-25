@@ -24,8 +24,8 @@ public class PartyController {
     }
 
     @PostMapping("/save")
-    public Party save(@RequestBody Party idea){
-        return this.service.save(idea);
+    public Party save(@RequestBody Party party){
+        return this.service.save(party);
     }
 
     @GetMapping("/join/{party_id}/{user_id}")

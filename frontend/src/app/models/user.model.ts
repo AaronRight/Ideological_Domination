@@ -9,7 +9,7 @@ export enum Role {
 export class User implements Fielded {
   getFields: Function;
 
-  id: number;
+  id: string;
   email: string;
   role: Role;
   name: string;

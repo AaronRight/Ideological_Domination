@@ -34,7 +34,7 @@ public class PartyServiceImpl implements PartyService {
     @Override
     public Party save(Party party) {
         Party saved = this.repository.save(party);
-        brokerMessagingTemplate.convertAndSend("/message", party);
+        brokerMessagingTemplate.convertAndSend("/message", party.toString());
         return saved;
     }
 
@@ -44,9 +44,9 @@ public class PartyServiceImpl implements PartyService {
         User u = this.userRepository.findById(user_id).get();
 
         Party old_p = u.getParty();
-        old_p.removeUser(u);
+        /*old_p.removeUser(u);
 
-        p.addUser(u);
+        p.addUser(u);*/
         u.setParty(p);
 
         this.userRepository.save(u);

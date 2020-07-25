@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TokenStorageService } from "../../security/token-storage.service";
 import { AuthLoginInfo } from "../../security/login-info";
-import { MessageService } from "../../services/message.service";
+import { MessageService } from "../../services";
 
 @Component({
   selector: "app-log-in",

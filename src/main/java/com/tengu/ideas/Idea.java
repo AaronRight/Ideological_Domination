@@ -9,7 +9,7 @@ import java.util.UUID;
 public class Idea {
     @Id
     @GeneratedValue
-    private UUID id;
+    private Long id;
 
     String title;
     String text;
@@ -19,11 +19,11 @@ public class Idea {
     @JoinColumn(name = "author_id", columnDefinition="uuid not null")
     private User author;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,7 +53,7 @@ public class Idea {
 
     @Override
     public String toString() {
-        return "Party [" + title + ":" + text + "]";
+        return "Idea [" + title + ":" + text + "]";
     }
 
     public User getAuthor() {

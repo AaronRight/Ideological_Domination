@@ -1,11 +1,6 @@
 package com.tengu.parties;
 
-import com.tengu.users.User;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -41,9 +36,15 @@ public class Party {
         this.color = color;
     }
 
-    public Set<User> getUsers() { return new HashSet<>();/*users;*/ }
+    /*
+    public Set<User> getUsers() { return users;}
 
-    public void addUser(User user) { /*this.users.add(user);*/ }
+    public void addUser(User user) { this.users.add(user); }
 
-    public void removeUser(User user) { /*this.users.remove(user);*/ }
+    public void removeUser(User user) { this.users.remove(user); }*/
+
+    @Override
+    public String toString() {
+        return "Party{" + "id=" + id + ", title='" + title + '\'' + ", color='" + color + '\'' + '}';
+    }
 }

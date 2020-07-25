@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Party } from "../models";
-import { PartyEditComponent } from "../components";
+import { Idea } from "../models";
+import { IdeaEditComponent } from "../components";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
@@ -8,32 +8,35 @@ import { Observable } from "rxjs";
 @Injectable({
   providedIn: "root",
 })
-export class PartyService {
-  public parties: Party[] = [];
+export class IdeaService {
+  public ideas: Idea[] = [];
 
   constructor(private http: HttpClient, public dialog: MatDialog) {}
 
   getAll() {
-    this.http.get<Party[]>(`/api/parties/`).subscribe((value: Party[]) => {
-      this.parties = value;
+    this.http.get<Idea[]>(`/api/ideas/`).subscribe((value: Idea[]) => {
+      console.log(value);
+      this.ideas = value;
     });
   }
 
-  get(id): Observable<Party> {
-    return this.http.get<Party>(`/api/parties/${id}`);
+  get(id): Observable<Idea> {
+    return this.http.get<Idea>(`/api/ideas/${id}`);
   }
 
-  save(party: Party) {
-    return this.http.post(`/api/parties/save`, party);
+  save(idea: Idea) {
+    return this.http.post(`/api/ideas/save`, idea);
   }
 
-  join() {}
+  rank() {}
 
   createEditDialog(row): void {
     let data = row ? { id: row.id } : {};
 
-    const dialogRef = this.dialog.open(PartyEditComponent, {
+    const dialogRef = this.dialog.open(IdeaEditComponent, {
       data,
+      width: "100%",
+      maxWidth: "none",
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");

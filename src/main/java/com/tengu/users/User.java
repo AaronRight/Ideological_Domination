@@ -26,7 +26,7 @@ import java.util.UUID;
 				"email"
 		})
 })
-public class User implements UserDetails {
+public class User {
 	public static enum UserRole {
 		ADMIN, USER, ORGANIZER;
         public static UserRole getById(String id){
@@ -60,43 +60,6 @@ public class User implements UserDetails {
 
 	@Builder.Default
 	private Boolean enabled = false;
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-
-		final SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(userRole.name());
-		return Collections.singletonList(simpleGrantedAuthority);
-	}
-
-	@Override
-	public String getPassword() {
-		return password;
-	}
-
-	@Override
-	public String getUsername() {
-		return email;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return !locked;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return enabled;
-	}
 
 	public Party getParty() {
 		return party;

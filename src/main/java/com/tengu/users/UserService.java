@@ -2,18 +2,11 @@ package com.tengu.users;
 
 import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import java.text.MessageFormat;
-import java.util.List;
-import java.util.Optional;
 
 @org.springframework.stereotype.Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService {
 
 	private final UserRepository userRepository;
 
@@ -34,13 +27,8 @@ public class UserService implements UserDetailsService {
 		emailSenderService.sendEmail(mailMessage);
 	}
 
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
-		final Optional<User> optionalUser = userRepository.findByEmail(email);
-
-		return optionalUser.orElseThrow(() -> new UsernameNotFoundException(MessageFormat.format("User with email {0} cannot be found.", email)));
-
+	public User loadUserByUsername(String email) throws UsernameNotFoundException {
+		return userRepository.findByEmail(email).get();
 	}
 
 	public void signUpUser(User user) {

@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Initiative {
     @Id
     @GeneratedValue
-    private UUID id;
+    private Long id;
 
     String title;
     String text;
@@ -25,11 +25,11 @@ public class Initiative {
     private User author;
 
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -59,7 +59,7 @@ public class Initiative {
 
     @Override
     public String toString() {
-        return "Party [" + title + ":" + text + "]";
+        return "Initiative [" + title + ":" + text + "]";
     }
 
     public User getAuthor() {

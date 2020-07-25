@@ -11,8 +11,8 @@ import {
 import {
   InitiativeComponent,
   InitiativeEditComponent,
-} from "./initiative.component/initiative.component";
-import { InitiativeListComponent } from "./initiative.component/initiative-list.component";
+  InitiativeListComponent,
+} from "./initiative.component";
 import { HeaderComponent } from "./header.component";
 import { MainComponent } from "./main.component/main.component";
 import { SignInComponent } from "./sign-in.component/sign-in.component";

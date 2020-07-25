@@ -74,12 +74,12 @@ import {
     AuthGuardService,
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
   ],
-  bootstrap: [AppComponent],
   entryComponents: [
     PartyEditComponent,
     InitiativeEditComponent,
     IdeaEditComponent,
     UserEditComponent,
   ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

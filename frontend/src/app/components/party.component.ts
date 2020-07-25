@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
   selector: "app-party",
   template: `
     <mat-card class="party_body">
-      <div class="party_name">{{ party.name }}</div>
+      <div class="party_name">{{ party.title }}</div>
       <mat-card class="party_color" [style.background]="party.color"></mat-card>
       <mat-chip-list class="party_join">
         <mat-chip color="primary" selected>Join</mat-chip>
@@ -36,12 +36,15 @@ export class PartyComponent {
       <div
         style="flex:1; overflow-y: overlay; display: flex; flex-direction: column; "
       >
-        <app-party *ngFor="let p of parties" [party]="p"></app-party>
+        <app-party
+          *ngFor="let p of partyService.parties"
+          [party]="p"
+        ></app-party>
       </div>
     </div>
     <button
       class="desktop_nav"
-      style="height: 50px; align-self: flex-end; justify-content: center;"
+      style="margin: 25px; height: 50px; align-self: flex-end; justify-content: center; align-items: center;"
       mat-fab
       color="primary"
       (click)="partyService.createEditDialog()"
@@ -63,12 +66,9 @@ export class PartyComponent {
   ],
 })
 export class PartyListComponent implements AfterViewInit {
-  parties: Party[];
   constructor(private partyService: PartyService) {}
   ngAfterViewInit() {
-    this.partyService.getAll().subscribe((value: Party[]) => {
-      this.parties = value;
-    });
+    this.partyService.getAll();
   }
 }
 
@@ -124,11 +124,12 @@ export class PartyEditComponent {
   onSubmit() {
     if (this.partyForm.valid) {
       let cur = new Party();
-      cur.id = 123;
       cur.color = "#" + this.partyForm.value.color.hex;
-      cur.name = this.partyForm.value.name;
-      this.partyService.save(cur);
-      this.dialogRef.close();
+      cur.title = this.partyForm.value.name;
+      this.partyService.save(cur).subscribe((s) => {
+        console.log(s);
+        this.dialogRef.close();
+      });
     }
   }
 }

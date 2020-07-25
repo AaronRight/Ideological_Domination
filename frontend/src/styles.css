@@ -38,6 +38,10 @@ body {
   display: none !important;
 }
 
+.cdk-global-overlay-wrapper {
+  justify-content: center !important;
+}
+
 .mobile_nav,
 .mobile_content {
   display: flex !important;
@@ -56,5 +60,9 @@ body {
   .desktop_nav,
   .desktop_content {
     display: flex !important;
+  }
+
+  .cdk-overlay-pane {
+    width: 70% !important;
   }
 }

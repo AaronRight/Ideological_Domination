@@ -5,9 +5,9 @@ export class Party implements Fielded {
 
   id: number;
   color: string;
-  name: string;
+  title: string;
 
   static getFields() {
-    return ["id", "color", "name"];
+    return ["id", "color", "title"];
   }
 }
